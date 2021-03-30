@@ -90,14 +90,13 @@ Summary
 
 
 $ truffle run verify Migrations MasterChef MockERC20 --network kovan
-Verifying Migrations
-Pass - Verified: https://kovan.etherscan.io/address/0x0E9dCad7E1D4969d4d9a501C34373821126FDc62#contracts
-Verifying MasterChef
-Pass - Verified: https://kovan.etherscan.io/address/0x26eAd6Ef963D2F87e0201d3F25a9394fe41fec84#contracts
-Verifying MockERC20
-Pass - Verified: https://kovan.etherscan.io/address/0xC64Bf0079856333FfBE39546Bc7524e6b19d20A7#contracts
-Successfully verified 3 contract(s).
-Done in 146.91s.
+
+Verifying Migrations https://kovan.etherscan.io/address/0x0E9dCad7E1D4969d4d9a501C34373821126FDc62#contracts
+
+Verifying MasterChef https://kovan.etherscan.io/address/0x26eAd6Ef963D2F87e0201d3F25a9394fe41fec84#contracts
+
+Verifying MockERC20  https://kovan.etherscan.io/address/0xC64Bf0079856333FfBE39546Bc7524e6b19d20A7#contracts
+
 
 
 

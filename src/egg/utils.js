@@ -70,7 +70,7 @@ export const getPoolWeight = async (masterChefContract, pid) => {
 };
 
 export const getEarned = async (masterChefContract, pid, account) => {
-  return masterChefContract.methods.pendingEgg(pid, account).call();
+  return masterChefContract.methods.pendingRewardToken(pid, account).call();
 };
 
 export const getTotalLPWethValue = async (
