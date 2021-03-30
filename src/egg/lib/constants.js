@@ -1,11 +1,11 @@
-import BigNumber from 'bignumber.js/bignumber'
+import BigNumber from 'bignumber.js/bignumber';
 
-export const SUBTRACT_GAS_LIMIT = 100000
+export const SUBTRACT_GAS_LIMIT = 100000;
 
-const ONE_MINUTE_IN_SECONDS = new BigNumber(60)
-const ONE_HOUR_IN_SECONDS = ONE_MINUTE_IN_SECONDS.times(60)
-const ONE_DAY_IN_SECONDS = ONE_HOUR_IN_SECONDS.times(24)
-const ONE_YEAR_IN_SECONDS = ONE_DAY_IN_SECONDS.times(365)
+const ONE_MINUTE_IN_SECONDS = new BigNumber(60);
+const ONE_HOUR_IN_SECONDS = ONE_MINUTE_IN_SECONDS.times(60);
+const ONE_DAY_IN_SECONDS = ONE_HOUR_IN_SECONDS.times(24);
+const ONE_YEAR_IN_SECONDS = ONE_DAY_IN_SECONDS.times(365);
 
 export const INTEGERS = {
   ONE_MINUTE_IN_SECONDS,
@@ -17,10 +17,10 @@ export const INTEGERS = {
   ONES_31: new BigNumber('4294967295'), // 2**32-1
   ONES_127: new BigNumber('340282366920938463463374607431768211455'), // 2**128-1
   ONES_255: new BigNumber(
-    '115792089237316195423570985008687907853269984665640564039457584007913129639935',
+    '115792089237316195423570985008687907853269984665640564039457584007913129639935'
   ), // 2**256-1
   INTEREST_RATE_BASE: new BigNumber('1e18'),
-}
+};
 
 export const addressMap = {
   uniswapFactory: '0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95',
@@ -36,24 +36,25 @@ export const addressMap = {
   COMP: '0xc00e94Cb662C3520282E6f5717214004A7f26888',
   LEND: '0x80fB784B7eD66730e8b1DBd9820aFD29931aab03',
   EGGYCRV: '0x2C7a51A357d5739C5C74Bf3C96816849d2c9F726',
-}
+};
 export const contractAddresses = {
   egg: {
+    //put usdt address here andd see balance...
     1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
     3: '0x20128d8c232F9856A6BE4b844972C726923F0331',
-    42: '0xC0674d667Ba71a1A33e8Fe6B6341132E7Fdb2ecF'
+    42: '0x3Da9E82d842b6343e1b6b452C5bbBa8B994b1D7C',
   },
   masterChef: {
     1: '0xc2edad668740f1aa35e4d8f227fb8e17dca888cd',
     3: '0x265DaDca67c1bb56518e845073bBF9F9FEBeaAB1',
-    42: '0xA9Da5DD61FfDEBC89FDf6CdC62E8EeF5dB8eE029'
+    42: '0x26eAd6Ef963D2F87e0201d3F25a9394fe41fec84',
   },
   weth: {
     1: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
     3: '0x2fcc4dba284dcf665091718e4d0dab53a416dfe7',
-    42: '0xd0a1e359811322d97991e03f863a0c30c2cf029c'
+    42: '0xd0a1e359811322d97991e03f863a0c30c2cf029c',
   },
-}
+};
 
 /*
 UNI-V2 LP Address on mainnet for reference
@@ -78,15 +79,15 @@ export const supportedPools = [
     pid: 0,
     lpAddresses: {
       3: '0x09aA896D52e540F13227d717Efd21C04a52921aC',
-      42: '0x774C36dc4f5A9B6D96Ff77984628d7D3b156836b'
+      42: '0xC64Bf0079856333FfBE39546Bc7524e6b19d20A7',
     },
     tokenAddresses: {
       3: '0x56704aA00Fa292A8DC713aa165306359299c92F8',
-      42: '0x66c67c9d9d570e634cd9bF36318462713d9e6363'
+      42: '0x3Da9E82d842b6343e1b6b452C5bbBa8B994b1D7C',
     },
     name: 'Aviary',
     symbol: 'BIRD-ETH UNI-V2 LP',
     tokenSymbol: 'BIRD',
     icon: '⧫',
-  }
-]
+  },
+];
