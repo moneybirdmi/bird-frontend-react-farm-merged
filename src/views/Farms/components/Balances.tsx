@@ -95,11 +95,11 @@ const Balances: React.FC = () => {
       </div>
       &nbsp;
       <div>
-        Reward Per Block: <span style={{ color: '#ce6667' }}>0.5 EGGS</span> |
+        Reward is in: <span style={{ color: '#ce6667' }}>USDT</span> |
       </div>
       &nbsp;
       <div>
-        BIRD Balance:{' '}
+        USDT Balance:{' '}
         <span style={{ color: '#ce6667' }}>
           {!!account ? getBalanceNumber(eggBalance) : 'Locked'}
         </span>

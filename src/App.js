@@ -1,36 +1,36 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { NavLink, Route, Switch } from 'react-router-dom'
-import { Web3Provider, getDefaultProvider } from "@ethersproject/providers";
-import { Contract } from "@ethersproject/contracts";
-import { useQuery } from "@apollo/react-hooks";
-import Web3 from "web3";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import React, { useCallback, useEffect, useState } from 'react';
+import { NavLink, Route, Switch } from 'react-router-dom';
+import { Web3Provider, getDefaultProvider } from '@ethersproject/providers';
+import { Contract } from '@ethersproject/contracts';
+import { useQuery } from '@apollo/react-hooks';
+import Web3 from 'web3';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import { Button, Header } from "./components";
-import { initWeb3, web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
-import GET_TRANSFERS from "./graphql/subgraph";
-import { addresses, abis } from "./contracts";
+import { Button, Header } from './components';
+import { initWeb3, web3Modal, logoutOfWeb3Modal } from './utils/web3Modal';
+import GET_TRANSFERS from './graphql/subgraph';
+import { addresses, abis } from './contracts';
 
 import Disclaimer from './components/ui/DisclaimerModal';
-import Main from "./components/main";
-import Farms from './views/Farms'
+import Main from './components/main';
+import Farms from './views/Farms';
 
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Avatar from "@material-ui/core/Avatar";
-import Bird from "./bird_logo.png";
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
+import Bird from './bird_logo.png';
 
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
-import Container from "@material-ui/core/Container";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import Container from '@material-ui/core/Container';
 import Alert from '@material-ui/lab/Alert';
-import Link from "@material-ui/core/Link";
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     // padding: theme.spacing(2),
-    textAlign: "center",
+    textAlign: 'center',
     color: theme.palette.text.secondary,
   },
   sidebarList: {
@@ -47,33 +47,33 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(4),
   },
   sidebar: {
-    height: "150vh",
-    background: "radial-gradient(circle, rgba(246,222,219,1) 16%, rgba(255,255,255,1) 74%);"
-    
+    height: '150vh',
+    background:
+      'radial-gradient(circle, rgba(246,222,219,1) 16%, rgba(255,255,255,1) 74%);',
   },
   marginTop: {
     marginTop: theme.spacing(8),
-  }
+  },
 }));
 
 const theme = createMuiTheme({
   typography: {
     fontFamily: [
-      "Roboto",
-      "Helvetica",
-      "Helvetica Neue",
-      "Arial",
-      "sans-serif",
-      "Apple Color Emoji",
-      "Segoe UI Emoji",
-      "Segoe UI Symbol",
-    ].join(","),
+      'Roboto',
+      'Helvetica',
+      'Helvetica Neue',
+      'Arial',
+      'sans-serif',
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+    ].join(','),
   },
 });
 
 async function readOnChainData(account) {
   // Should replace with the end-user wallet, e.g. Metamask
-  const defaultProvider = getDefaultProvider("ropsten");
+  const defaultProvider = getDefaultProvider('ropsten');
   // const web3Provider = Web3Provider()
   // Create an instance of an ethers.js Contract
   // Read more about ethers.js on https://docs.ethers.io/v5/api/contract/contract/
@@ -86,12 +86,9 @@ async function readOnChainData(account) {
     defaultProvider
   );
 
-  const tokenBalance = await birdContract.balanceOf(
-    account
-  );
+  const tokenBalance = await birdContract.balanceOf(account);
 
   console.log({ tokenBalance: tokenBalance.toString() });
-
 }
 
 function WalletButton({ provider, loadWeb3Modal }) {
@@ -105,7 +102,7 @@ function WalletButton({ provider, loadWeb3Modal }) {
         }
       }}
     >
-      {!provider ? "Connect Wallet" : "Disconnect Wallet"}
+      {!provider ? 'Connect Wallet' : 'Disconnect Wallet'}
     </Button>
   );
 }
@@ -117,7 +114,7 @@ function App() {
   const [provider, setProvider] = useState();
   const [web3js, setWeb3js] = useState();
   const [web3Obj, setWeb3Obj] = useState();
-  const [account, setAccount] = useState("");
+  const [account, setAccount] = useState('');
   const [testNetwork, setNetwork] = useState();
 
   /* Open wallet selection modal. */
@@ -151,7 +148,6 @@ function App() {
     let web3;
     try {
       web3 = await initWeb3();
-
     } catch (err) {
       console.error(err);
       return;
@@ -159,29 +155,27 @@ function App() {
 
     const accounts = await web3.eth.getAccounts();
     const networkId = await web3.eth.net.getId();
-    web3.eth.defaultAccount =  accounts[0];
+    web3.eth.defaultAccount = accounts[0];
     setAccount(accounts[0]);
     setWeb3Obj(web3);
-    setNetwork(networkId)
-
+    setNetwork(networkId);
   };
 
   return (
     <>
       <div className={classes.root}>
         <Grid container spacing={3}>
-          
           <Grid item xs={12} sm={2}>
             <Paper className={(classes.paper, classes.sidebar)}>
-              <List component="nav" aria-label="sidebar">
+              <List component='nav' aria-label='sidebar'>
                 <ListItem button className={classes.sidebarList}>
                   <ListItemIcon>
                     {/* <InboxIcon /> */}
                     <Avatar className={classes.avatar} src={Bird}>
-                      {" "}
+                      {' '}
                     </Avatar>
                   </ListItemIcon>
-                  <ListItemText primary="Bird.Money" />
+                  <ListItemText primary='Bird.Money' />
                 </ListItem>
 
                 <Divider />
@@ -190,16 +184,26 @@ function App() {
                   <ListItemText primary="Dashboard" />
                 </ListItem> */}
 
-                <ListItem button className={classes.sidebarList} component={NavLink} to="/farms">
-                  <ListItemText primary="Farm" />
+                <ListItem
+                  button
+                  className={classes.sidebarList}
+                  component={NavLink}
+                  to='/farms'
+                >
+                  <ListItemText primary='Farm' />
                 </ListItem>
 
-                <ListItem button className={classes.sidebarList} component={NavLink} to="/staking">
-                  <ListItemText primary="Oracle Analytics" />
+                <ListItem
+                  button
+                  className={classes.sidebarList}
+                  component={NavLink}
+                  to='/staking'
+                >
+                  <ListItemText primary='Oracle Analytics' />
                 </ListItem>
 
                 <ListItem button className={classes.sidebarList}>
-                  <ListItemText primary="Governance" />
+                  <ListItemText primary='Governance' />
                 </ListItem>
               </List>
             </Paper>
@@ -207,42 +211,43 @@ function App() {
 
           <Grid item xs={12} sm={10}>
             <Switch>
-              <Route path="/" exact>
-                <Farms/>
+              <Route path='/' exact>
+                <Farms />
               </Route>
-              <Route path="/farms">
-                <Farms/>
+              <Route path='/farms'>
+                <Farms />
               </Route>
-              <Route path="/staking">
-                <Alert severity="warning">Beta testing on Kovan: Contract
+              <Route path='/staking'>
+                <Alert severity='warning'>
+                  Beta testing on Kovan: Contract
                   <Link
-                    target="_blank"
-                    href={"https://kovan.etherscan.io/address/" + addresses.kovan}
+                    target='_blank'
+                    href={
+                      'https://kovan.etherscan.io/address/' + addresses.kovan
+                    }
                   >
-                      ({addresses.kovan})
-                  </Link>{" "}
+                    ({addresses.kovan})
+                  </Link>{' '}
                 </Alert>
-                <Container className={classes.root, classes.marginTop}>
+                <Container className={(classes.root, classes.marginTop)}>
                   <Grid container>
                     <Grid item xs={10}>
-
                       {/* <Button  onClick={() => readOnChainData(account)}>
-                        Read On-Chain BIRD Balance
+                        Read On-Chain USDT Balance
                       </Button> */}
 
-                      <Typography component="h1" variant="h5">
+                      <Typography component='h1' variant='h5'>
                         Oracle Analytics
                       </Typography>
-                      <Typography component="h1" variant="h5">
+                      <Typography component='h1' variant='h5'>
                         Off-Chain Oracle Analytics and ID
                       </Typography>
 
                       {/* <Typography variant="body1" color="textPrimary">
                         *You will need to hold BIRD to access some of the services below (connect a wallet with transaction history and ETH)
                       </Typography> */}
-                      
-                      <br/>
-                      
+
+                      <br />
                     </Grid>
                     <Grid item xs={2}>
                       <WalletButton
@@ -257,17 +262,16 @@ function App() {
                     <Main account={account} web3Obj={web3Obj}></Main>
                   ) : (
                     <Typography
-                      component="h1"
-                      variant="h5"
-                      color="textSecondary"
-                      align="center"
+                      component='h1'
+                      variant='h5'
+                      color='textSecondary'
+                      align='center'
                     >
                       <CircularProgress />
                       Please connect to metamask and KOVAN network
                     </Typography>
                   ) // or whatever loading state you want, could be null
                 }
-
               </Route>
             </Switch>
           </Grid>
