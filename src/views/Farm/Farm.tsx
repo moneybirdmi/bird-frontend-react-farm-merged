@@ -1,21 +1,21 @@
-import React, { useEffect, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
-import styled from 'styled-components'
-import { useWallet } from 'use-wallet'
-import { provider } from 'web3-core'
-import PageHeader from '../../components/ui/PageHeader'
-import Spacer from '../../components/ui/Spacer'
-import useFarm from '../../hooks/useFarm'
-import useRedeem from '../../hooks/useRedeem'
-import useEgg from '../../hooks/useEgg'
-import { getMasterChefContract } from '../../egg/utils'
-import { getContract } from '../../utils/erc20'
-import Harvest from './components/Harvest'
-import Stake from './components/Stake'
+import React, { useEffect, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { useWallet } from 'use-wallet';
+import { provider } from 'web3-core';
+import PageHeader from '../../components/ui/PageHeader';
+import Spacer from '../../components/ui/Spacer';
+import useFarm from '../../hooks/useFarm';
+import useRedeem from '../../hooks/useRedeem';
+import useEgg from '../../hooks/useEgg';
+import { getMasterChefContract } from '../../egg/utils';
+import { getContract } from '../../utils/erc20';
+import Harvest from './components/Harvest';
+import Stake from './components/Stake';
 import Logo from '../../assets/img/Group.png';
 
 const Farm: React.FC = () => {
-  const { farmId } = useParams<{ farmId: string }>()
+  const { farmId } = useParams<{ farmId: string }>();
   const {
     pid,
     lpToken,
@@ -32,28 +32,28 @@ const Farm: React.FC = () => {
     earnToken: '',
     name: '',
     icon: '',
-  }
+  };
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
-  const egg = useEgg()
-  const { ethereum } = useWallet()
+  const egg = useEgg();
+  const { ethereum } = useWallet();
 
   const lpContract = useMemo(() => {
-    return getContract(ethereum as provider, lpTokenAddress)
-  }, [ethereum, lpTokenAddress])
+    return getContract(ethereum as provider, lpTokenAddress);
+  }, [ethereum, lpTokenAddress]);
 
-  const { onRedeem } = useRedeem(getMasterChefContract(egg))
+  const { onRedeem } = useRedeem(getMasterChefContract(egg));
 
   const lpTokenName = useMemo(() => {
-    return lpToken.toUpperCase()
-  }, [lpToken])
+    return lpToken.toUpperCase();
+  }, [lpToken]);
 
   const earnTokenName = useMemo(() => {
-    return earnToken.toUpperCase()
-  }, [earnToken])
+    return earnToken.toUpperCase();
+  }, [earnToken]);
 
   return (
     <>
@@ -63,11 +63,10 @@ const Farm: React.FC = () => {
         title={name}
       />
       <StyledFarm>
-        <img src={Logo} ></img>
+        <img src={Logo}></img>
         <BirdFarmSpan>Bird Farm</BirdFarmSpan>
         <BirdFarmSpan>Deposit BIRD-ETH LP Tokens and earn EGGS</BirdFarmSpan>
         <StyledCardsWrapper>
-          
           <StyledCardWrapper>
             <Harvest pid={pid} />
           </StyledCardWrapper>
@@ -80,30 +79,29 @@ const Farm: React.FC = () => {
             />
           </StyledCardWrapper>
         </StyledCardsWrapper>
-        <Spacer size="lg" />
-        <Spacer size="lg" />
+        <Spacer size='lg' />
+        <Spacer size='lg' />
       </StyledFarm>
     </>
-  )
-}
+  );
+};
 
 const StyledFarm = styled.div`
   align-items: center;
   display: flex;
-  margin-top:40px;
+  margin-top: 40px;
   flex-direction: column;
   @media (max-width: 768px) {
     width: 100%;
   }
-`
-const BirdFarmSpan =styled.span`
-font-family: brown;
-font-style: normal;
-font-weight: normal;
-font-size: 24px;
-color: #183149;
-
-`
+`;
+const BirdFarmSpan = styled.span`
+  font-family: brown;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  color: #183149;
+`;
 
 const StyledCardsWrapper = styled.div`
   display: flex;
@@ -113,8 +111,8 @@ const StyledCardsWrapper = styled.div`
     flex-flow: column nowrap;
     align-items: center;
   }
-  margin-top:40px;
-`
+  margin-top: 40px;
+`;
 
 const StyledCardWrapper = styled.div`
   display: flex;
@@ -123,7 +121,7 @@ const StyledCardWrapper = styled.div`
   @media (max-width: 768px) {
     width: 80%;
   }
-`
+`;
 
 const StyledInfo = styled.h3`
   color: ${(props) => props.theme.color.grey[400]};
@@ -132,6 +130,6 @@ const StyledInfo = styled.h3`
   margin: 0;
   padding: 0;
   text-align: center;
-`
+`;
 
-export default Farm
+export default Farm;

@@ -8,6 +8,9 @@ BirdToken: https://kovan.etherscan.io/address/0xee426697da6885e7c8c0d48255de85ac
 
 BirdOracle: https://kovan.etherscan.io/address/0xd666840ecd7c643f7bf441e6cbbd0bc91588737a#code
 
+
+
+
 just for info: BIRD STAKING, ORACLE contracts on kovan:
 
 MasterChef.address:  0x26eAd6Ef963D2F87e0201d3F25a9394fe41fec84
