@@ -1,25 +1,26 @@
-import React from 'react'
-import { Route, Switch, useRouteMatch } from 'react-router-dom'
-import { useWallet } from 'use-wallet'
+import React from 'react';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { useWallet } from 'use-wallet';
 
-import chef from '../../assets/img/chef.png'
+import chef from '../../assets/img/chef.png';
 
-import Button from '../../components/ui/Button'
-import Page from '../../components/ui/Page'
-import PageHeader from '../../components/ui/PageHeader'
-import WalletProviderModal from '../../components/ui/WalletProviderModal'
+import Button from '../../components/ui/Button';
+import Page from '../../components/ui/Page';
+import PageHeader from '../../components/ui/PageHeader';
+import WalletProviderModal from '../../components/ui/WalletProviderModal';
 
-import useModal from '../../hooks/useModal'
+import useModal from '../../hooks/useModal';
 
-import Farm from '../Farm'
+import Farm from '../Farm';
 
-import FarmCards from './components/FarmCards'
-import Balances from './components/Balances'
+import FarmCards from './components/FarmCards';
+import Balances from './components/Balances';
 
 const Farms: React.FC = () => {
-  const { path } = useRouteMatch()
-  const { account } = useWallet()
-  const [onPresentWalletProviderModal] = useModal(<WalletProviderModal />)
+  const { path } = useRouteMatch();
+  const { account } = useWallet();
+  //test
+  const [onPresentWalletProviderModal] = useModal(<WalletProviderModal />);
   return (
     <Switch>
       <Page>
@@ -27,9 +28,9 @@ const Farms: React.FC = () => {
           <>
             <Route exact path={path}>
               <PageHeader
-                icon={<img src={chef} height="120" />}
-                subtitle="Earn EGG tokens by staking Uniswap V2 LP Tokens."
-                title="Select Your Favorite Dishes"
+                icon={<img src={chef} height='120' />}
+                subtitle='Earn EGG tokens by staking Uniswap V2 LP Tokens.'
+                title='Select Your Favorite Dishes'
               />
               <Balances />
               <FarmCards />
@@ -49,13 +50,13 @@ const Farms: React.FC = () => {
           >
             <Button
               onClick={onPresentWalletProviderModal}
-              text="🔓 Unlock Wallet"
+              text='🔓 Unlock Wallet'
             />
           </div>
         )}
       </Page>
     </Switch>
-  )
-}
+  );
+};
 
-export default Farms
+export default Farms;
