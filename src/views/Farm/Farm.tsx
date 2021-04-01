@@ -65,7 +65,7 @@ const Farm: React.FC = () => {
       <StyledFarm>
         <img src={Logo}></img>
         <BirdFarmSpan>Bird Farm</BirdFarmSpan>
-        <BirdFarmSpan>Deposit BIRD-ETH LP Tokens and earn EGGS</BirdFarmSpan>
+        <BirdFarmSpan>Deposit BIRD-ETH LP Tokens and earn USDT</BirdFarmSpan>
         <StyledCardsWrapper>
           <StyledCardWrapper>
             <Harvest pid={pid} />
